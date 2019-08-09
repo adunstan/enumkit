@@ -1,0 +1,35 @@
+
+
+README.enumkit
+
+Author: Andrew Dunstan <adunstan@postgresql.org>
+Date: Oct 27, 2005.
+
+This kit is to simplify the process of creating first class enum types in
+PostgreSQL. To use it, you need:
+
+. version 8.0 or later of PostgreSQL, including the server and development
+  pieces.
+. a C compiler, and GNU Make
+. The name of the enumeration type you want to create - must be a simple
+  identifier, valid in both C and PostgreSQL
+. a set of enumeration values.
+
+Unpack the kit, and then run something like this:
+
+	make TYPENAME=foo ENUMS='"val1", "val2", "val3"'
+
+The quotes and commas are very important - if you get them wrong you will get 
+a compilation failure.
+
+When you get a success, run this:
+
+	make TYPENAME=foo install
+
+and finally, you need to install the type into your db, like this:
+
+	psql -f /path/to/contrib/foo-install.sql yourdbname
+
+And you can then start using the enumeration type.
+
+Enjoy.
